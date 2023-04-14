@@ -11,10 +11,11 @@ async function patch(key,value,version,ifVersion) {
     if(!entry || (ifVersion && entry.version!==ifVersion)) return false;
     const type = typeof(value),
         oldType = typeof(entry.value);
-    if(type!==oldType || value===null || entry.value===null) {
-        return this.put(key,value,version,ifVersion)
-    }
-    if(type==="object" && oldType==="object") {
+    if(type==="function") {
+        entry.value = value(entry.value,entry.version);
+    } else if(type!==oldType || value===null || entry.value===null) {
+        entry.value = value;
+    } else if(type==="object" && oldType==="object") {
         Object.assign(entry.value,value);
         deleteUndefined(entry.value,value);
     } else {
