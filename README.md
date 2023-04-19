@@ -1,5 +1,5 @@
 # lmdb-patch
-Provides a patch method for LMDB to do partial object updates
+Provides a patch method for LMDB to do partial object updates.
 
 # Installation
 
@@ -9,7 +9,7 @@ npm install lmdb-patch
 
 # Usage
 
-`lmdb-patch` exports a single function `patch` that needs to be bound to an open database, e,g,
+`lmdb-patch` exports a single function `patch` that needs to be bound to an open database, e.g.
 
 ```javascript
 import {open} from "lmdb";
@@ -50,6 +50,8 @@ index.js |     100 |      100 |     100 |     100 |
 
 
 # Release Notes (Reverse Chronological Order)
+
+2023-04-19 v1.0.1 Documentation updates.
 
 2023-04-14 v1.0.0 Updated documentation. 100% test coverage.
 
