@@ -24,4 +24,6 @@ async function patch(key,value,version,ifVersion) {
     return this.put(key,entry.value,version,ifVersion);
 }
 
-export {patch as default,patch}
+import {withExtensions} from "lmdb-extend";
+
+export {patch as default,patch,withExtensions}

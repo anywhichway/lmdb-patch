@@ -9,19 +9,18 @@ npm install lmdb-patch
 
 # Usage
 
-`lmdb-patch` exports a single function `patch` that needs to be bound to an open database, e.g.
+`lmdb-patch` exports `patch` and a utility function to bind it to a database, e.g.
 
 ```javascript
 import {open} from "lmdb";
-import {patch} from "lmdb-patch";
+import {patch,withExtensions} from "lmdb-patch";
 
-const db = open("test", {create: true});
-db.patch = patch;
+const db = withExtensions(open("test", {create: true}),{patch});
 ```
 
 # API
 
-## async patch(key,value,version,ifVersion)
+## async patch(key,value,version,ifVersion) - returns boolean
 
 From a call interface perspective, `patch` works the same way as the [LMDB put function](https://github.com/kriszyp/lmdb-js#dbputkey-value-version-number-ifversion-number-promiseboolean).
 
@@ -39,6 +38,10 @@ await db.patch("person1",{housing:{homeowner:undefined,renter:true}})
 // now person1 = {name:"Joe",housing:{renter:true}}
 ```
 
+## withExtensions(db:lmdbDatabase,extenstions:object) - returns lmdbDatabase`
+
+Extends an LMDB database and any child databases it opens to have the `extensions` provided as well as any child databases it opens. This utility is common to other `lmdb` extensions like `lmdb-patch`, `lmdb-copy`, `lmdb-move`.
+
 # Testing
 
 Testing is conducted using Jest.
@@ -50,6 +53,8 @@ index.js |     100 |      100 |     100 |     100 |
 
 
 # Release Notes (Reverse Chronological Order)
+
+2023-04-19 v1.0.2 Simplified database augmentation by adding `withExtensions` from `lmdb-extend`.
 
 2023-04-19 v1.0.1 Documentation updates.
 

@@ -1,9 +1,8 @@
 import {open} from "lmdb";
-import {patch} from "./index.js";
+import {patch,withExtensions} from "./index.js";
 
 
-const db = open("test",{create:true,useVersions:true});
-db.patch = patch;
+const db = withExtensions(open("test",{create:true,useVersions:true}),{patch});
 db.clearSync();
 db.putSync("number",1,1);
 db.putSync("object",{a:1,nested:{b:2}},1);
