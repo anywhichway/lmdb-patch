@@ -1,6 +1,6 @@
 {
   "name": "lmdb-patch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Provides a patch method for LMDB to do partial object updates.",
   "type": "module",
   "main": "index.js",

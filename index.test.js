@@ -2,7 +2,7 @@ import {open} from "lmdb";
 import {patch,withExtensions} from "./index.js";
 
 
-const db = withExtensions(open("test",{create:true,useVersions:true}),{patch});
+const db = withExtensions(open("test",{create:true,useVersions:true}));
 db.clearSync();
 db.putSync("number",1,1);
 db.putSync("object",{a:1,nested:{b:2}},1);

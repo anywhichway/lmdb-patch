@@ -24,6 +24,10 @@ async function patch(key,value,version,ifVersion) {
     return this.put(key,entry.value,version,ifVersion);
 }
 
-import {withExtensions} from "lmdb-extend";
+import {withExtensions as lmdbExtend} from "lmdb-extend";
+
+const withExtensions = (db,extensions={}) => {
+    return lmdbExtend(db,{patch,...extensions})
+}
 
 export {patch as default,patch,withExtensions}
